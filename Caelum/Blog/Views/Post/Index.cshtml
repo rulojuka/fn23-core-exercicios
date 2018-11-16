@@ -1,0 +1,24 @@
+<html>
+    <head></head>
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Resumo</th>
+                    <th>Categoria</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in ViewBag.Posts)
+                {
+                    <tr>
+                        <td>@p.Titulo</td>
+                        <td>@p.Resumo</td>
+                        <td>@p.Categoria</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </body>
+</html>
