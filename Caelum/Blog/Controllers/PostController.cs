@@ -27,5 +27,13 @@ namespace Blog.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Categoria([Bind(Prefix = "id")] string categoria)
+        {
+            PostDAO dao = new PostDAO();
+            IList<Post> lista = dao.FiltraPorCategoria(categoria);
+            return View("Index", lista);
+        }
+
+
     }
 }
