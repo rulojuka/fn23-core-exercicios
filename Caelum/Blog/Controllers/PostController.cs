@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Blog.DAO;
 using Blog.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,18 +9,10 @@ namespace Blog.Controllers
     {
         private IList<Post> lista;
 
-        public PostController()
-        {
-            this.lista = new List<Post>{
-                new Post { Titulo = "Harry Potter 1", Resumo = "Pedra Filosofal", Categoria = "Filme, Livro" },
-                new Post { Titulo = "Cassino Royale", Resumo = "007", Categoria = "Filme" },
-                new Post { Titulo = "Monge e o Executivo", Resumo = "Romance sobre Liderança", Categoria = "Livro" },
-                new Post { Titulo = "New York, New York", Resumo = "Sucesso de Frank Sinatra", Categoria = "Música" }
-            };
-        }
-
         public IActionResult Index()
         {
+            PostDAO dao = new PostDAO();
+            IList<Post> lista = dao.Lista();
             return View(lista);
         }
 
@@ -34,7 +27,6 @@ namespace Blog.Controllers
             lista.Add(post);
             return View("Index", lista);
         }
-
 
     }
 }
