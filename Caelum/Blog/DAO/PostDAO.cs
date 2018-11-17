@@ -36,8 +36,12 @@ namespace Blog.DAO
             using (SqlConnection cnx = ConnectionFactory.CriaConexaoAberta())
             {
                 SqlCommand comando = cnx.CreateCommand();
-                comando.CommandText = "insert into Posts (Titulo, Resumo, Categoria) values ('" + post.Titulo + "','" + post.Resumo + "','" + post.Categoria + "')";
+                comando.CommandText = "insert into Posts (Titulo, Resumo, Categoria) values (@titulo, @resumo, @categoria)";
+                comando.Parameters.Add(new SqlParameter("titulo", post.Titulo));
+                comando.Parameters.Add(new SqlParameter("resumo", post.Resumo));
+                comando.Parameters.Add(new SqlParameter("categoria", post.Categoria));
                 comando.ExecuteNonQuery();
+
             }
         }
     }
