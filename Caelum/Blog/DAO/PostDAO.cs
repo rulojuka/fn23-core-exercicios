@@ -30,5 +30,15 @@ namespace Blog.DAO
             }
             return lista;
         }
+
+        public void Adiciona(Post post)
+        {
+            using (SqlConnection cnx = ConnectionFactory.CriaConexaoAberta())
+            {
+                SqlCommand comando = cnx.CreateCommand();
+                comando.CommandText = "insert into Posts (Titulo, Resumo, Categoria) values ('" + post.Titulo + "','" + post.Resumo + "','" + post.Categoria + "')";
+                comando.ExecuteNonQuery();
+            }
+        }
     }
 }

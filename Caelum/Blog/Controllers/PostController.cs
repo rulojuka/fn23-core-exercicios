@@ -7,8 +7,6 @@ namespace Blog.Controllers
 {
     public class PostController : Controller
     {
-        private IList<Post> lista;
-
         public IActionResult Index()
         {
             PostDAO dao = new PostDAO();
@@ -24,8 +22,9 @@ namespace Blog.Controllers
         [HttpPost]
         public IActionResult Adiciona(Post post)
         {
-            lista.Add(post);
-            return View("Index", lista);
+            PostDAO dao = new PostDAO();
+            dao.Adiciona(post);
+            return RedirectToAction("Index");
         }
 
     }
