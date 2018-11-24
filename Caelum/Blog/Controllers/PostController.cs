@@ -34,6 +34,30 @@ namespace Blog.Controllers
             return View("Index", lista);
         }
 
+        public IActionResult Remove(int id)
+        {
+            PostDAO dao = new PostDAO();
+            dao.Remove(id);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Visualiza(int id)
+        {
+            PostDAO dao = new PostDAO();
+            Post post = dao.BuscaPorId(id);
+            return View(post);
+        }
+
+        [HttpPost]
+        public IActionResult Edita(Post post)
+        {
+            PostDAO dao = new PostDAO();
+            dao.Atualiza(post);
+            return RedirectToAction("Index");
+        }
+
+
+
 
     }
 }

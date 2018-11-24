@@ -8,15 +8,17 @@
                     <th>Título</th>
                     <th>Resumo</th>
                     <th>Categoria</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var p in Model)
                 {
                     <tr>
-                        <td>@p.Titulo</td>
+                        <td><a href="/Post/Visualiza/@p.Id">@p.Titulo</a></td>
                         <td>@p.Resumo</td>
                         <td>@p.Categoria</td>
+                        <td><a href="/Post/Remove/@p.Id">Remover</a></td>
                     </tr>
                 }
             </tbody>
