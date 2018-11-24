@@ -11,6 +11,8 @@
         <label>
           Categoria: <input name="categoria" value="@Model.Categoria" />
         </label>
+        <input name="Publicado" type="hidden" value="@Model.Publicado.ToString()" />
+        <input name="DataPublicacao" type="hidden" value="@Model.DataPublicacao" />
         <button type="submit">Cadastrar</button>
     </form>
 </div>

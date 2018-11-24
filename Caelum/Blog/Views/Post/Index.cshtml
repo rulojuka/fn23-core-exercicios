@@ -8,6 +8,7 @@
                     <th>Título</th>
                     <th>Resumo</th>
                     <th>Categoria</th>
+                    <th>Publicado?</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -18,7 +19,19 @@
                         <td><a href="/Post/Visualiza/@p.Id">@p.Titulo</a></td>
                         <td>@p.Resumo</td>
                         <td>@p.Categoria</td>
-                        <td><a href="/Post/Remove/@p.Id">Remover</a></td>
+                        <td>
+                            @if(p.Publicado)
+                            {
+                                @Html.Raw(string.Format("{0:dd/MM/yyyy}", p.DataPublicacao))
+                            } else
+                            {
+                                @Html.Raw("Não")
+                            }
+                        </td>
+                        <td>
+                            <a href="/Post/Remove/@p.Id">Remover</a>
+                            <a href="/Post/Publica/@p.Id">Publicar</a>
+                        </td>
                     </tr>
                 }
             </tbody>
