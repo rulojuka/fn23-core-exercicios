@@ -6,7 +6,7 @@ namespace Blog.Models
     public class Post
     {
         public int Id { get;  set; }
-        [Required] [StringLength(50)]
+        [Required] [StringLength(50)] [Display(Name="Título")]
         public string Titulo { get; set; }
         [Required]
         public string Resumo { get; set; }

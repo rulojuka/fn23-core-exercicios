@@ -1,24 +1,47 @@
 @model Blog.Models.Post
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <div>
-    <form action="/Post/Edita" method="post">
-        <input type="hidden" name="id" value="@Model.Id" />
-        <label>
-         Título: <input name="titulo" value="@Model.Titulo" required maxlength="50" />
-        </label>
-        <label>
-          Resumo: <input name="resumo" value="@Model.Resumo" required />
-        </label>
-        <label>
-          Categoria: <input name="categoria" value="@Model.Categoria" />
-        </label>
-        <input name="Publicado" type="hidden" value="@Model.Publicado.ToString()" />
-        <input name="DataPublicacao" type="hidden" value="@Model.DataPublicacao" />
-        <button type="submit">Cadastrar</button>
-    </form>
+  @using (Html.BeginForm("Edita", "Post"))
+  {
+    @Html.HiddenFor(p => p.Id)
+    @Html.HiddenFor(p => p.Publicado)
+    @Html.HiddenFor(p => p.DataPublicacao)
+
+    @Html.LabelFor(p => p.Titulo)
+    @Html.TextBoxFor(p => p.Titulo)
+    @Html.ValidationMessageFor(p => p.Titulo)
+
+    @Html.LabelFor(p => p.Resumo)
+    @Html.TextBoxFor(p => p.Resumo)
+    @Html.ValidationMessageFor(p => p.Resumo)
+
+    @Html.LabelFor(p => p.Categoria)
+    @Html.TextBoxFor(p => p.Categoria)
+    @Html.ValidationMessageFor(p => p.Categoria)
+
+    <button type="submit">Cadastrar</button>
+  }
 </div>
 <script src="~/js/jquery-1.10.2.js"></script>
 <script src="~/js/jquery.validate.js"></script>
-<script>
-  $("form").validate()
-</script>
+<script src="~/js/jquery.validate.unobtrusive.js"></script>
 
+<!-- Usando tag helpers
+
+<form asp-controller="Post" asp-action="EditaPost" method="post">
+        <input type="hidden" asp-for="Id"/>
+        <input type="hidden" asp-for="Publicado"/>
+        <input type="hidden" asp-for="DataPublicacao"/>
+        <label asp-for="Titulo"></label>
+        <input asp-for="Titulo"/>
+        <span asp-validation-for="Titulo"></span>
+        <label asp-for="Resumo"></label>
+        <input asp-for="Resumo"/>
+        <span asp-validation-for="Resumo"></span>
+        <label asp-for="Categoria"></label>
+        <input asp-for="Categoria"/>
+        <span asp-validation-for="Categoria"></span>
+        <button type="submit">Cadastrar</button>
+    </form>
+
+-->

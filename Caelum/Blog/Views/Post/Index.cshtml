@@ -1,8 +1,10 @@
 @model IList<Blog.Models.Post>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <html>
     <head></head>
     <body>
         @Html.ActionLink("Incluir Post", "Novo")
+        <!-- Tag helper <a asp-controller="Post" asp-action="Novo">Incluir Post</a> -->
         <table>
             <thead>
                 <tr>
