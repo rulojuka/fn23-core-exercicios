@@ -1,0 +1,28 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Blog.Models.Post
+
+@Html.LabelFor(p => p.Titulo)
+@Html.TextBoxFor(p => p.Titulo)
+@Html.ValidationMessageFor(p => p.Titulo)
+
+@Html.LabelFor(p => p.Resumo)
+@Html.TextBoxFor(p => p.Resumo)
+@Html.ValidationMessageFor(p => p.Resumo)
+
+@Html.LabelFor(p => p.Categoria)
+@Html.TextBoxFor(p => p.Categoria)
+@Html.ValidationMessageFor(p => p.Categoria)
+
+<!-- Tag Helpers
+<label asp-for="Titulo"></label>
+<input asp-for="Titulo"/>
+<span asp-validation-for="Titulo"></span>
+
+<label asp-for="Resumo"></label>
+<input asp-for="Resumo"/>
+<span asp-validation-for="Resumo"></span>
+
+<label asp-for="Categoria"></label>
+<input asp-for="Categoria"/>
+<span asp-validation-for="Categoria"></span>
+-->
