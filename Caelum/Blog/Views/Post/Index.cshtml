@@ -2,6 +2,7 @@
 <html>
     <head></head>
     <body>
+        @Html.ActionLink("Incluir Post", "Novo")
         <table>
             <thead>
                 <tr>
@@ -16,7 +17,7 @@
                 @foreach (var p in Model)
                 {
                     <tr>
-                        <td><a href="/Post/Visualiza/@p.Id">@p.Titulo</a></td>
+                        <td>@Html.ActionLink(p.Titulo,"Visualiza", new { id = p.Id })</td>
                         <td>@p.Resumo</td>
                         <td>@p.Categoria</td>
                         <td>
@@ -29,8 +30,8 @@
                             }
                         </td>
                         <td>
-                            <a href="/Post/Remove/@p.Id">Remover</a>
-                            <a href="/Post/Publica/@p.Id">Publicar</a>
+                            @Html.ActionLink("Remover","Remove", new { id = p.Id })
+                            @Html.ActionLink("Publicar","Publica", new { id = p.Id })
                         </td>
                     </tr>
                 }
