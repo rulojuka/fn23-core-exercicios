@@ -3,10 +3,10 @@
     <form action="/Post/Edita" method="post">
         <input type="hidden" name="id" value="@Model.Id" />
         <label>
-         Título: <input name="titulo" value="@Model.Titulo" />
+         Título: <input name="titulo" value="@Model.Titulo" required maxlength="50" />
         </label>
         <label>
-          Resumo: <input name="resumo" value="@Model.Resumo" />
+          Resumo: <input name="resumo" value="@Model.Resumo" required />
         </label>
         <label>
           Categoria: <input name="categoria" value="@Model.Categoria" />
@@ -16,3 +16,9 @@
         <button type="submit">Cadastrar</button>
     </form>
 </div>
+<script src="~/js/jquery-1.10.2.js"></script>
+<script src="~/js/jquery.validate.js"></script>
+<script>
+  $("form").validate()
+</script>
+

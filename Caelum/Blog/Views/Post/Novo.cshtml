@@ -5,11 +5,11 @@
         <form action="/Post/Adiciona" method="post">
             @Html.ValidationMessage("titulo")
             <label>
-                Título: <input name="titulo" value="@Model.Titulo" />
+                Título: <input name="titulo" value="@Model.Titulo" required maxlength="50" />
             </label>
             @Html.ValidationMessage("resumo")
             <label>
-                Resumo: <input name="resumo" value="@Model.Resumo" />
+                Resumo: <input name="resumo" value="@Model.Resumo" required />
             </label>
             @Html.ValidationMessage("categoria")
             <label>
@@ -17,6 +17,11 @@
             </label>
             <button type="submit">Cadastrar</button>
         </form>
+        <script src="~/js/jquery-1.10.2.js"></script>
+        <script src="~/js/jquery.validate.js"></script>
+        <script>
+        $("form").validate()
+        </script>
     </body>
 </html>
 
