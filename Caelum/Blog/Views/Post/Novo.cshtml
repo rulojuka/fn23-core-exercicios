@@ -1,15 +1,19 @@
+@model Blog.Models.Post
 <html>
     <head></head>
     <body>
         <form action="/Post/Adiciona" method="post">
+            @Html.ValidationMessage("titulo")
             <label>
-                Título: <input name="titulo" />
+                Título: <input name="titulo" value="@Model.Titulo" />
             </label>
+            @Html.ValidationMessage("resumo")
             <label>
-                Resumo: <input name="resumo" />
+                Resumo: <input name="resumo" value="@Model.Resumo" />
             </label>
+            @Html.ValidationMessage("categoria")
             <label>
-                Categoria: <input name="categoria"/>
+                Categoria: <input name="categoria" value="@Model.Categoria"/>
             </label>
             <button type="submit">Cadastrar</button>
         </form>
