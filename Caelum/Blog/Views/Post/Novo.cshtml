@@ -1,7 +1,9 @@
 @model Blog.Models.Post
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <html>
-    <head></head>
+    <head>
+        <link href="~/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    </head>
     <body>
         <div>
             @using(Html.BeginForm("Adiciona", "Post"))
@@ -14,22 +16,19 @@
         <script src="~/js/jquery-1.10.2.js"></script>
         <script src="~/js/jquery.validate.js"></script>
         <script src="~/js/jquery.validate.unobtrusive.js"></script>
+        <script src="~/js/jquery-ui.js"></script>
+        <script>
+            $("input[name='Categoria']").autocomplete({
+                source: function (request, response) {
+                    $.post(
+                        "@Url.Action("CategoriaAutocomplete")",
+                        { termoDigitado: request.term },
+                        function (data) {
+                            response(data);
+                        });
+                }
+            });
+        </script>
+
     </body>
 </html>
-
-<!-- Usando tag helpers
-
-<form asp-controller="Post" asp-action="Adiciona" method="post">
-        <label asp-for="Titulo"></label>
-        <input asp-for="Titulo"/>
-        <span asp-validation-for="Titulo"></span>
-        <label asp-for="Resumo"></label>
-        <input asp-for="Resumo"/>
-        <span asp-validation-for="Resumo"></span>
-        <label asp-for="Categoria"></label>
-        <input asp-for="Categoria"/>
-        <span asp-validation-for="Categoria"></span>
-        <button type="submit">Cadastrar</button>
-    </form>
-
--->
