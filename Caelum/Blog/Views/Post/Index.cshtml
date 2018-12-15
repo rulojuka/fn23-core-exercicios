@@ -1,43 +1,39 @@
 @model IList<Blog.Models.Post>
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-<html>
-    <head></head>
-    <body>
-        @Html.ActionLink("Incluir Post", "Novo")
-        <!-- Tag helper <a asp-controller="Post" asp-action="Novo">Incluir Post</a> -->
-        <table>
-            <thead>
+<div>
+    @Html.ActionLink("Incluir Post", "Novo")
+    <!-- Tag helper <a asp-controller="Post" asp-action="Novo">Incluir Post</a> -->
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Resumo</th>
+                <th>Categoria</th>
+                <th>Publicado?</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
                 <tr>
-                    <th>Título</th>
-                    <th>Resumo</th>
-                    <th>Categoria</th>
-                    <th>Publicado?</th>
-                    <th>Ações</th>
+                    <td>@Html.ActionLink(p.Titulo,"Visualiza", new { id = p.Id })</td>
+                    <td>@p.Resumo</td>
+                    <td>@p.Categoria</td>
+                    <td>
+                        @if(p.Publicado)
+                        {
+                            @Html.Raw(string.Format("{0:dd/MM/yyyy}", p.DataPublicacao))
+                        } else
+                        {
+                            @Html.Raw("Não")
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Remover","Remove", new { id = p.Id })
+                        @Html.ActionLink("Publicar","Publica", new { id = p.Id })
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var p in Model)
-                {
-                    <tr>
-                        <td>@Html.ActionLink(p.Titulo,"Visualiza", new { id = p.Id })</td>
-                        <td>@p.Resumo</td>
-                        <td>@p.Categoria</td>
-                        <td>
-                            @if(p.Publicado)
-                            {
-                                @Html.Raw(string.Format("{0:dd/MM/yyyy}", p.DataPublicacao))
-                            } else
-                            {
-                                @Html.Raw("Não")
-                            }
-                        </td>
-                        <td>
-                            @Html.ActionLink("Remover","Remove", new { id = p.Id })
-                            @Html.ActionLink("Publicar","Publica", new { id = p.Id })
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </body>
-</html>
+            }
+        </tbody>
+    </table>
+</div>>

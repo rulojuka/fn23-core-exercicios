@@ -1,34 +1,14 @@
 @model Blog.Models.Post
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-<html>
-    <head>
-        <link href="~/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
-    </head>
-    <body>
-        <div>
-            @using(Html.BeginForm("Adiciona", "Post"))
-            {
-                @Html.EditorFor(p => p)
 
-                <button type="submit">Cadastrar</button>
-            }
-        </div>
-        <script src="~/js/jquery-1.10.2.js"></script>
-        <script src="~/js/jquery.validate.js"></script>
-        <script src="~/js/jquery.validate.unobtrusive.js"></script>
-        <script src="~/js/jquery-ui.js"></script>
-        <script>
-            $("input[name='Categoria']").autocomplete({
-                source: function (request, response) {
-                    $.post(
-                        "@Url.Action("CategoriaAutocomplete")",
-                        { termoDigitado: request.term },
-                        function (data) {
-                            response(data);
-                        });
-                }
-            });
-        </script>
+<div>
+    @using(Html.BeginForm("Adiciona", "Post"))
+    {
+        @Html.EditorFor(p => p)
+        <button type="submit">Cadastrar</button>
+    }
+</div>
 
-    </body>
-</html>
+@section Scripts {
+    @Html.Partial("_Scripts")
+}
+
