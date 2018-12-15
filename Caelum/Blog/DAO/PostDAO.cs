@@ -94,6 +94,15 @@ namespace Blog.DAO
             }
         }
 
+        public IList<Post> ListaPublicados()
+        {
+            using (BlogContext contexto = new BlogContext())
+            {
+                return contexto.Posts.Where(p => p.Publicado)
+                            .OrderByDescending(p => p.DataPublicacao).ToList();
+            }
+        }
+
 
     }
 }
