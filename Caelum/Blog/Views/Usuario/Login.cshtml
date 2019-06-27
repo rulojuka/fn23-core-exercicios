@@ -1,0 +1,32 @@
+@model LoginViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resenha Cultural - Login</title>
+    <link rel="stylesheet" href="~/Content/bootstrap-min.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/estilo.css" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <main id="login-form">
+            <h2>Resenha Cultural - Login</h2>
+            @Html.ValidationSummary()
+            @using (Html.BeginForm("Autentica", "Usuario", FormMethod.Post))
+            {
+                @Html.LabelFor(u => u.LoginName)
+                @Html.TextBoxFor(u => u.LoginName, new { @class = "form-control" })
+
+                @Html.LabelFor(u => u.Password)
+                @Html.PasswordFor(u => u.Password, new { @class = "form-control" })
+
+                <input type="submit" value="Login" />
+            }
+        </main> 
+    </div>
+</body>
+</html>
