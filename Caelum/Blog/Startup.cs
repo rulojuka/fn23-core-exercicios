@@ -24,12 +24,16 @@ namespace Blog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddMvc();
 
             services.AddDbContext<BlogContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("Blog"))
             );
             services.AddTransient<PostDAO>();
+            services.AddTransient<UsuarioDAO>();
+
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +50,9 @@ namespace Blog
 
             app.UseStaticFiles();
 
+            // Essa linha PRECISA vir antes do app.UseMvc !!!
+            app.UseSession();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -57,6 +64,7 @@ namespace Blog
                     template: "{controller=Home}/{action=Index}/{id?}"
                 );
             });
+
         }
     }
 }

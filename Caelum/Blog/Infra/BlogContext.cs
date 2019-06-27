@@ -9,5 +9,6 @@ namespace Blog.Infra
     {
         public BlogContext(DbContextOptions<BlogContext> options) : base(options) { }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }
