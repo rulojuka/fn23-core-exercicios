@@ -9,12 +9,10 @@ namespace Blog.Areas.Admin.Controllers
     [Area("Admin")]
     public class PostController : Controller
     {
-        private BlogContext contexto;
         private PostDAO dao;
-        public PostController()
+        public PostController(PostDAO dao)
         {
-            contexto = new BlogContext();
-            dao = new PostDAO(contexto);
+            this.dao = dao;
         }
         public IActionResult Index()
         {
@@ -86,14 +84,6 @@ namespace Blog.Areas.Admin.Controllers
             return Json(model);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                contexto.Dispose();
-            }
-            base.Dispose(disposing);
-        }
 
     }
 }

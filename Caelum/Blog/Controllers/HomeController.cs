@@ -8,12 +8,10 @@ namespace Blog.Controllers
 {
     public class HomeController : Controller
     {
-        private BlogContext contexto;
         private PostDAO dao;
-        public HomeController()
+        public HomeController(PostDAO dao)
         {
-            contexto = new BlogContext();
-            dao = new PostDAO(contexto);
+            this.dao = dao;
         }
         public IActionResult Index()
         {
@@ -25,15 +23,6 @@ namespace Blog.Controllers
         {
             IList<Post> posts = dao.BuscaPeloTermo(termo);
             return View("Index", posts);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                contexto.Dispose();
-            }
-            base.Dispose(disposing);
         }
 
     }
