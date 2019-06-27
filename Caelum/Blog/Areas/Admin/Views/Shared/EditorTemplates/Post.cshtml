@@ -1,27 +1,27 @@
 @model Blog.Models.Post
 
 @Html.LabelFor(p => p.Titulo)
-@Html.TextBoxFor(p => p.Titulo)
+@Html.TextBoxFor(p => p.Titulo, new { @class = "form-control"})
 @Html.ValidationMessageFor(p => p.Titulo)
 
 @Html.LabelFor(p => p.Resumo)
-@Html.TextBoxFor(p => p.Resumo)
+@Html.TextAreaFor(p => p.Resumo, new { @class = "form-control", rows = 6 })
 @Html.ValidationMessageFor(p => p.Resumo)
 
 @Html.LabelFor(p => p.Categoria)
-@Html.TextBoxFor(p => p.Categoria)
+@Html.TextBoxFor(p => p.Categoria, new { @class = "form-control" })
 @Html.ValidationMessageFor(p => p.Categoria)
 
 <!-- Tag Helpers
 <label asp-for="Titulo"></label>
-<input asp-for="Titulo"/>
+<input asp-for="Titulo" class="form-control"/>
 <span asp-validation-for="Titulo"></span>
 
 <label asp-for="Resumo"></label>
-<input asp-for="Resumo"/>
+<input asp-for="Resumo" class="form-control"rows="6"/>
 <span asp-validation-for="Resumo"></span>
 
 <label asp-for="Categoria"></label>
-<input asp-for="Categoria"/>
+<input asp-for="Categoria" class="form-control"/>
 <span asp-validation-for="Categoria"></span>
 -->

@@ -1,14 +1,15 @@
-@model IList<Blog.Models.Post>
+@model IList<Post>
+<h2>Lista de Posts</h2>
 <div>
-    @Html.ActionLink("Incluir Post", "Novo")
+    @Html.ActionLink("Incluir Post", "Novo", null, null, new { @class = "btn btn-primary"})
     <!-- Tag helper <a asp-controller="Post" asp-action="Novo">Incluir Post</a> -->
     <table>
+        <caption> Lista dos posts cadastrados no blog.</caption>
         <thead>
             <tr>
-                <th>Título</th>
-                <th>Resumo</th>
+                <th>Post</th>
                 <th>Categoria</th>
-                <th>Publicado?</th>
+                <th>Publicado em</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -16,8 +17,10 @@
             @foreach (var p in Model)
             {
                 <tr>
-                    <td>@Html.ActionLink(p.Titulo,"Visualiza", new { id = p.Id })</td>
-                    <td>@p.Resumo</td>
+                    <td>
+                        <h4>@Html.ActionLink(p.Titulo,"Visualiza", new { id = p.Id })</h4>
+                        <p>@p.Resumo</p>
+                    </td>
                     <td>@p.Categoria</td>
                     <td>
                         @if(p.Publicado)
@@ -25,7 +28,7 @@
                             @Html.Raw(string.Format("{0:dd/MM/yyyy}", p.DataPublicacao))
                         } else
                         {
-                            @Html.Raw("Não")
+                            @Html.Raw("Não publicado")
                         }
                     </td>
                     <td>
@@ -36,4 +39,4 @@
             }
         </tbody>
     </table>
-</div>>
+</div>
