@@ -1,0 +1,11 @@
+@model Blog.Models.RegistroViewModel
+
+<div>
+    @Html.ValidationSummary()
+    @using(Html.BeginForm("Cadastra", "Usuario"))
+    {
+        @Html.EditorFor(rvm => rvm)
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    }
+</div>
+

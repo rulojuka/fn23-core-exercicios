@@ -39,9 +39,31 @@ namespace Blog.Controllers
             return View("Login", model);
         }
 
-        public IActionResult Logout(){
+        public IActionResult Logout()
+        {
             HttpContext.Session.Clear();
             return View("Login");
+        }
+        public IActionResult Novo()
+        {
+            return View(new RegistroViewModel());
+        }
+
+        [HttpPost]
+        public IActionResult Cadastra(RegistroViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Usuario usuario = new Usuario()
+                {
+                    Nome = model.LoginName,
+                    Email = model.Email,
+                    Senha = model.Senha
+                };
+                usuarioDAO.Adiciona(usuario);
+                return RedirectToAction("Login");
+            }
+            return View("Novo", model);
         }
     }
 }
