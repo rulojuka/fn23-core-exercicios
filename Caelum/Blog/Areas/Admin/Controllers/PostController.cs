@@ -3,7 +3,9 @@ using Blog.DAO;
 using Blog.Filters;
 using Blog.Infra;
 using Blog.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Blog.Areas.Admin.Controllers
 {
@@ -32,7 +34,9 @@ namespace Blog.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                dao.Adiciona(post);
+                string usuarioJson = HttpContext.Session.GetString("usuario");
+                Usuario logado = JsonConvert.DeserializeObject<Usuario>(usuarioJson);
+                dao.Adiciona(post,logado);
                 return RedirectToAction("Index");
             }
             else

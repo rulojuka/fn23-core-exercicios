@@ -28,6 +28,14 @@ namespace Blog.DAO
             contexto.SaveChanges();
         }
 
+        public void Adiciona(Post post, Usuario usuario)
+        {
+            contexto.Usuarios.Attach(usuario);
+            post.Autor = usuario;
+            contexto.Posts.Add(post);
+            contexto.SaveChanges();
+        }
+
         public IList<Post> FiltraPorCategoria(string categoria)
         {
             IList<Post> lista = contexto.Posts.Where(post => post.Categoria.Contains(categoria)).ToList();
