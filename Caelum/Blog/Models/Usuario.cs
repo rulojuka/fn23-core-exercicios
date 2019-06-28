@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Blog.Models
@@ -14,5 +15,6 @@ namespace Blog.Models
 
         [Required]
         public string Senha { get; set; }
+        public IList<Post> Posts { get; set; }
     }
 }
