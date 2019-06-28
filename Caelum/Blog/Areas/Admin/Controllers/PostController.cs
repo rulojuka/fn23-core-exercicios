@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using Blog.DAO;
+using Blog.Filters;
 using Blog.Infra;
 using Blog.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Areas.Admin.Controllers
 {
+    [AutorizacaoFilter]
     [Area("Admin")]
     public class PostController : Controller
     {
